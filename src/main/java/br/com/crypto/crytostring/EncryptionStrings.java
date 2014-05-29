@@ -67,8 +67,8 @@ public class EncryptionStrings {
         System.out.println("Plain Text : " + txt);
         System.out.println("Encrypted : \n" + valueEnc);
         System.out.println("Decrypted : " + valueDec);
-        System.out.println("DigestHmac Original: \n"+HMACDigest.hmacDigestHmac(txt.substring(0, 5)+txt.substring(txt.length()-5, txt.length()), myEncryptionKey));
-        System.out.println("DigestHmac  Refactory: \n"+HMACDigest.hmacDigestHmac(valueDec.substring(0, 5)+valueDec.substring(valueDec.length()-5, valueDec.length()), myEncryptionKey));
+        System.out.println("DigestHmac Original: \n"+HMACDigest.hmacDigestHmac(txt, myEncryptionKey));
+        System.out.println("DigestHmac  Refactory: \n"+HMACDigest.hmacDigestHmac(valueDec, myEncryptionKey));
         
     }
 
