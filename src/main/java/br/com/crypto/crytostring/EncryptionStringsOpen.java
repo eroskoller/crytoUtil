@@ -5,21 +5,17 @@
  */
 package br.com.crypto.crytostring;
 
-import java.nio.charset.Charset;
-import java.security.GeneralSecurityException;
 import java.security.Key;
 import javax.crypto.Cipher;
-import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
+import org.apache.commons.codec.binary.Base64;
+
 
 /**
  *
  * @author eros
  */
-@Deprecated
-public class EncryptionStrings {
+public class EncryptionStringsOpen {
 
     private static final String ALGORITHM = "AES";
     private static final String myEncryptionKey = "$*4%&9|@#|sS-_?!";
@@ -32,21 +28,21 @@ public class EncryptionStrings {
         return key;
     }
 
-    @Deprecated
+
     public static String encrypt(String valueToEnc) throws Exception {
         Key key = generateKey();
         Cipher c = Cipher.getInstance(ALGORITHM);
         c.init(Cipher.ENCRYPT_MODE, key);
         byte[] encValue = c.doFinal(valueToEnc.getBytes());
-        String encryptedValue = new BASE64Encoder().encode(encValue);
+        String encryptedValue = new Base64().encodeToString(encValue);
         return encryptedValue;
     }
-    @Deprecated
+
     public static String decrypt(String encryptedValue) throws Exception {
         Key key = generateKey();
         Cipher c = Cipher.getInstance(ALGORITHM);
         c.init(Cipher.DECRYPT_MODE, key);
-        byte[] decordedValue = new BASE64Decoder().decodeBuffer(encryptedValue);
+        byte[] decordedValue = new Base64().decode(encryptedValue);
         byte[] decValue = c.doFinal(decordedValue);//////////LINE 50
         String decryptedValue = new String(decValue);
         return decryptedValue;
@@ -62,8 +58,8 @@ public class EncryptionStrings {
                 + "\n Seu sucessor, pelo sistema de rodízio, é o atual vice-presidente, Ricardo Lewandowski. Em seu discurso, "
                 + "\n Barbosa deverá usar como justificativa problemas de saúde e afirmar que não tem projetos políticos.";
          txt += txt; //txt += txt; txt += txt; txt += txt; txt += txt;
-        String valueEnc = EncryptionStrings.encrypt(txt);
-        String valueDec = EncryptionStrings.decrypt(valueEnc);
+        String valueEnc = EncryptionStringsOpen.encrypt(txt);
+        String valueDec = EncryptionStringsOpen.decrypt(valueEnc);
 
         System.out.println("Plain Text : " + txt);
         System.out.println("Encrypted : \n" + valueEnc);
