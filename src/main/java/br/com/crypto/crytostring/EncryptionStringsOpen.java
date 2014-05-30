@@ -18,7 +18,7 @@ import org.apache.commons.codec.binary.Base64;
 public class EncryptionStringsOpen {
 
     private static final String ALGORITHM = "AES";
-    private static final String myEncryptionKey = "$*4%&9|@#|sS-_?!";
+    private static final String myEncryptionKey = "$*%&ß|@#|ç-_?!";
     private static final String UNICODE_FORMAT = "UTF8";
 
     private static Key generateKey() throws Exception {
